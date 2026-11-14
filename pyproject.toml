@@ -1,0 +1,48 @@
+[project]
+name = "nisar-fetch"
+version = "0.1.0"
+description = "Search and download NASA NISAR GCOV products from the ASF DAAC via asf_search."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp>=3.14.5",
+    "asf-search>=14.1.0",
+    "fastapi>=0.163.0",
+    "fsspec>=2026.9.0",
+    "h5netcdf>=1.8.3",
+    "h5py>=3.16.0",
+    "numpy>=2.5.4",
+    "pillow>=13.0.0",
+    "rasterio>=1.5.2",
+    "rio-cogeo>=7.0.4",
+    "rio-tiler>=9.4.13",
+    "shapely>=2.2.0",
+    "uvicorn[standard]>=0.54.0",
+    "xarray>=2026.9.0",
+]
+
+[project.scripts]
+nisar-fetch = "nisar_fetch.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nisar_fetch"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["network: tests that hit the ASF/CMR network"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]

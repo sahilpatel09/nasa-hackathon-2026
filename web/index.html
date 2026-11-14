@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lake Erie · Satellite observations</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <aside id="panel">
+      <header>
+        <div class="eyebrow">Satellite observations · Lake Erie</div>
+        <h1>Lake Erie</h1>
+        <p class="scene" id="scene">Loading lake observations…</p>
+      </header>
+
+      <section class="loading" id="loading">Loading map data…</section>
+      <section class="error" id="error" hidden></section>
+
+      <section id="content" hidden>
+        <div class="field">
+          <label for="basemap">Basemap</label>
+          <select id="basemap">
+            <option value="satellite">Satellite</option>
+            <option value="dark">Dark</option>
+            <option value="osm">OpenStreetMap</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Layer</label>
+          <div class="segmented" id="layers"></div>
+        </div>
+
+        <label class="overlay-toggle"><input id="overlay-visible" type="checkbox" checked /> Show observation overlay</label>
+
+        <div class="field">
+          <label for="opacity">Opacity <span id="opacity-value">85%</span></label>
+          <input id="opacity" type="range" min="0" max="100" value="85" />
+        </div>
+
+        <div class="field legend-box">
+          <div class="legend-title" id="legend-title">HH (dB)</div>
+          <div class="legend-bar" id="legend-bar"></div>
+          <div class="legend-labels">
+            <span id="legend-min"></span>
+            <span id="legend-mid"></span>
+            <span id="legend-max"></span>
+          </div>
+        </div>
+
+        <p class="legend-note" id="legend-note" hidden></p>
+
+        <div class="buttons">
+          <button id="fit-lake" type="button">Show Lake Erie</button>
+          <button id="fit-study" type="button">Zoom to layer</button>
+        </div>
+
+        <div class="note" id="coverage-note"></div>
+        <div class="metadata" id="metadata"></div>
+        <div class="readout" id="readout">Click the map to sample a pixel.</div>
+      </section>
+
+      <footer>
+        <span id="product-label">NOAA · NASA NISAR</span>
+        <span id="crs"></span>
+      </footer>
+    </aside>
+
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
